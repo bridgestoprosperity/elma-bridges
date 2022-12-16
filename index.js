@@ -27,7 +27,13 @@ map.on("load", () => {
     }
   });
 
-  map.on("click", ["otherbridges", "elmabridges"], (e) => {
+  map.on("click", "elmabridges", (e) => {
+    new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML("Bridge Name: " + e.features[0].properties["Bridge Name"] + "<br>Bridge Type: " + e.features[0].properties["Bridge Type"] + "<br>Bridge Span: " + e.features[0].properties["Span (m)"] + " meters" + "<br>Completion Date: " + e.features[0].properties["Close Date"])
+      .addTo(map);
+  });
+  map.on("click", "otherbridges", (e) => {
     new mapboxgl.Popup()
       .setLngLat(e.lngLat)
       .setHTML("Bridge Name: " + e.features[0].properties["Bridge Name"] + "<br>Bridge Type: " + e.features[0].properties["Bridge Type"] + "<br>Bridge Span: " + e.features[0].properties["Span (m)"] + " meters")
